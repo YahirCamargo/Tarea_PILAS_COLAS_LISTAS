@@ -1,117 +1,101 @@
 package com.mycompany.unidad3.PILAS_COLAS_LISTAS;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class controlListasEnlazadas {
-    private int tope=-1;
-    private int max=15;
-    private List<Persona> lista;
+    private LinkedList<Persona> lista;
     
-    
+    /*
     public controlListasEnlazadas(){
         lista=new ArrayList<>();
     }
+    */
     
     
-    private boolean listaLlena(){
-        return (tope==max-1);
-    }
+    //cada que agrege
+    
     
     private boolean listaVacia(){        
-        return tope==-1;
+        return lista.size()==-1;
     }
-    
-    
-    
-    public List<Persona> recorrerLista(){
+    /*
+        public List<Persona> recorrerLista(){
         Collections.rotate(lista, 2);
         return lista;
     }
+    */
+    
+    
     
     public String agregarPrimero(Persona persona){
-        if(!listaLlena()){
-            List<Persona> nuevaLista = new ArrayList<>();
-            for(Persona p : recorrerLista()){
-                nuevaLista.add(p);
-            }
-            nuevaLista.add(0, persona);
-            lista = nuevaLista;
-            tope++;
+            lista.addFirst(persona);
             return "Persona agregada";
-        }else
-            return "No se pudo"; 
+         
     }
     
     
     public String agregarFinal(Persona persona){
-        if(!listaLlena()){
-            lista.add(persona);
-            tope++;
+            lista.addLast(persona);
             return "Persona agregada";
-        }else
-            return "Lista llena, desbordamiento de lista";
-    }
+            }
     
     public String agregarEnPosicion(Persona persona, int posicion){
-        if (!listaLlena()) {
-            if (posicion < 0 || posicion > tope) {
+            if (posicion < 0 || posicion > lista.size()) {
                 return "Posición no válida";
             }
+            
             lista.add(posicion, persona);
-            tope++;
             return "Persona agregada";
-        } else {
-            return "Lista llena, no se puede añadir nada";
+         
     }
-    }
+    
+    
     
     
     public String eliminaPrimero(){
+        String cadena;
         if(listaVacia())
             return "Lista vacia, no se puede quitar nada";
         else{
-            lista.remove(0);
-            Collections.rotate(lista, 0);
-            tope--;
-            return "Elemento quitado";
+            cadena=lista.get(0).toString();
+            lista.removeFirst();
+            return "Elemento quitado: "+cadena;
         }
     }
     
     public String eliminaUltimo(){
+        String cadena;
         if(listaVacia())
             return "Lista vacia, no se puede quitar nada";
         else{
-            lista.remove(tope);
-            tope--;
-            return "Elemento quitado";
+            cadena=lista.getLast().toString();
+            lista.removeLast();
+            return "Elemento quitado: "+cadena;
         }
     }
     
     public String eliminaPosicion(int posicion){
+        String cadena;
         if(listaVacia())
             return "Lista vacia, no se puede quitar nada";
         else{
+            cadena=lista.get(posicion).toString();
             lista.remove(posicion);
-            for(int i=posicion; i<=tope;i++){
-                lista.set(i-1, lista.get(i));
-            }
-            tope--;
-            return "Elemento quitado";
+            return "Elemento quitado: "+cadena;
         }
     }
     
     public String eliminarPorNombre(String nombre){
+        String cadena;
         if(listaVacia())
             return "Lista vacia, no se puede quitar nada";
         else{
-            for(int i=0;i<=tope;i++){
+            for(int i=0;i<=lista.size();i++){
                 if(lista.get(i).getNombre().equals(nombre)){
+                    cadena=lista.get(i).toString();
                     lista.remove(i);
                     // el remove, remueve el elemento de la lista sin dejar a los demas vacios
-                    tope--;
-                    return "Persona eliminada";
+                    return "Persona eliminada: "+cadena;
                 }
             }
             return "Persona no encontrada";
@@ -124,7 +108,7 @@ public class controlListasEnlazadas {
         if(listaVacia())
             cadena="La lista esta vacia";
         else{
-            for(int i=0;i<=tope;i++){
+            for(int i=0;i<=lista.size();i++){
                 if(lista.get(i).getNombre().equals(nomb)&&lista.get(i).getApellido().equals(apelli)&&lista.get(i).getFechaNacimiento().equals(nace)){
                     cadena=lista.get(i).toString();
                 }
@@ -143,11 +127,13 @@ public class controlListasEnlazadas {
     }
     
     public String imprimirInversa(){
-        String salida = "";
-        for(int i=tope; i>=0; i--){
-            salida+=lista.toString()+"\n";
+        String salida="";
+        for(int i=lista.size(); i>=0; i--){
+            salida=lista.toString()+"\n";
         }
         return salida;
     }
+    
+    
     
 }

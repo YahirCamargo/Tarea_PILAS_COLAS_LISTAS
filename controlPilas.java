@@ -17,31 +17,21 @@ public class controlPilas {
     }
     
     
-    private boolean pilaLlena(){
-        if (pila.isEmpty()){
-            return false;
-        }else{
-            return true;
-        }
-    }
-    
     
     public String ponerEnPila(Producto producto){
-        if(pila.size()==20){
-            return "Desbordamiento, ya no hay espacio";
-        }else{
             pila.push(producto);
             return "Agregado con exito";
-        }
+        
          
     }
     
     public String quitar(){
-        if (pilaVacia() == true) {
+        if (pilaVacia()) {
             return  "La pila esta vacia, no se puede eliminar nada";
         } else {
             Producto producto=pila.pop();
-            return  "Elemento borrado exitosamente";
+            
+            return  "Elemento borrado exitosamente: "+producto.toString();
         }
     }
     

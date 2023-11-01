@@ -19,36 +19,38 @@ public class controlColas {
     }
     
     public boolean colaVacia(){
-        return cola.isEmpty();
-    }
+        if(cola.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
     
-    public boolean colaLlena(){
-            return (cola.size()>=20);
     }
+    // quitar esta parte de cola llena, igual implementarla asi
+    
     
     
     public String ponerEnCola(Cliente cliente){
-        if(colaLlena())
-            return "Desbordamiento";
-        else{
             this.cola.add(cliente);
             return "Cliente agregado";
-        }
+        
     }
     
     public String quitarDeCola(){
+        String cadena;
         if(colaVacia())
             return "Cola vacia, no se puede quitar nada";
         else{
+            cadena=cola.toString();
             cola.remove();
-            return "Elemento quitado con exito";
+            //hay otro metodo
+            return "Elemento quitado con exito: "+cadena;
         }
     }
     
     public String imprimir(){
         String cadena="";
         for(Cliente cliente: this.cola){
-            
             cadena+=cliente.toString()+"\n";
         }
         return cadena;
@@ -57,7 +59,7 @@ public class controlColas {
     
     public String imprimirInverso(){
         String cadena="";
-        
+        //revisar esto quitando el -1
         for(int i=this.cola.size()-1; i>=0;i--){
             cadena+=this.cola.poll()+"\n";
         }

@@ -56,7 +56,10 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto--" + "Nombre: " + nombre + ", Fecha de caducidad: " + fechaCaducidad + ", Numero de lote: " + numLote + ", Coste de produccion: " + costeProduccion;
+        return "Nombre: " + nombre 
+                + ", Fecha de caducidad: " + fechaCaducidad 
+                + ", Numero de lote: " + numLote 
+                + ", Coste de produccion: " + costeProduccion;
     }
     
     
